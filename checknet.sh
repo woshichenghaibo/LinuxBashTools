@@ -18,6 +18,13 @@ while true; do
         if [ $count -gt 600 ]; then
             # reboot while bad connection for 10 minutes
             echo "Internet Connection Error,rebooting..."
+            # Wechat message push:
+            curl --location --request POST 'https://api.anpush.com/push/ZUM0GJE81YZJGOEWOQZ0TWTXAT1JFD' \
+                  --header 'Content-Type: application/x-www-form-urlencoded' \
+                  --data-urlencode 'title=Bad Net!' \
+                  --data-urlencode 'content=## Bad connection<br>Error when pinging baidu.com in 10 minutes.<br>Rebooting now... ' \
+                  --data-urlencode 'channel=18965'
+            # Wechat message push.
             reboot
             exit 0
         fi
